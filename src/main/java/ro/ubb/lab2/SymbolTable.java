@@ -27,4 +27,12 @@ public class SymbolTable {
     public void remove(String symbol){
         ht.remove(symbol);
     }
+
+    // Returns a string representation of the linked list from a given position
+    // in the symbol table.
+    // input: pos - int
+    // output: String
+    public String getElemString(int pos){
+        return "pos " + pos + ": " + ht.getFromPos(pos).toString();
+    }
 }

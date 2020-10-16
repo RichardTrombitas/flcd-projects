@@ -56,4 +56,15 @@ public class SinglyLinkedList {
     public SLLIterator iterator(){
         return new SLLIterator(this);
     }
+
+    @Override
+    public String toString() {
+        StringBuilder str = new StringBuilder();
+        SLLIterator it = this.iterator();
+        while(it.isValid()){
+            str.append(it.getCurrent()).append(" ");
+            it.next();
+        }
+        return str.toString();
+    }
 }

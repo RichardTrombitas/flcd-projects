@@ -65,4 +65,11 @@ public class HashTable {
     private int hash(String str) {
         return size % hashCode(str);
     }
+
+    //Returns the singly linked list from a given position.
+    //input: pos - int
+    //output: SinglyLinkedList
+    public SinglyLinkedList getFromPos(int pos){
+        return table[pos];
+    }
 }
