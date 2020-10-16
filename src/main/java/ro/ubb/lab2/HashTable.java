@@ -25,7 +25,7 @@ public class HashTable {
         return table[hash(str)].exists(str);
     }
 
-    //Adds a given element to the hash table.
+    //Adds a given element to the hash table. It is not added if it already exists.
     //input: str - String
     //output: -
     public void add(String str) {

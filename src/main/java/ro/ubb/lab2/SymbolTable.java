@@ -7,7 +7,7 @@ public class SymbolTable {
     //(since the division method was used for the hash function).
     private final HashTable ht = new HashTable(4987);
 
-    // Adds a symbol into the table.
+    // Adds a symbol into the table. It is not added if it already exists.
     // input: symbol - String
     // output: -
     public void add(String symbol){
