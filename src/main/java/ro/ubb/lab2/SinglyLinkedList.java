@@ -57,6 +57,8 @@ public class SinglyLinkedList {
         return new SLLIterator(this);
     }
 
+
+    //Returns a string representation of all the elements from a linked list.
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
