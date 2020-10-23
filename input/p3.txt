@@ -1,0 +1,6 @@
+int nrs = [1,2,3,4];
+int sum = 0;
+for(int x in nrs){
+ sum=sum+x;
+}
+print(sum);

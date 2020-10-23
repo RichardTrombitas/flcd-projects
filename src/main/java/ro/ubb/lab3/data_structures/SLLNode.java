@@ -1,4 +1,4 @@
-package ro.ubb.lab2;
+package ro.ubb.lab3.data_structures;
 
 public class SLLNode {
     //The information stored in the node, i.e. a string value.

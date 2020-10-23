@@ -1,4 +1,7 @@
-package ro.ubb.lab2;
+package ro.ubb.lab3;
+
+import ro.ubb.lab3.data_structures.HashTable;
+import ro.ubb.lab3.data_structures.SinglyLinkedList;
 
 public class SymbolTable {
     //The hash table in which the symbols are stored.
@@ -9,9 +12,9 @@ public class SymbolTable {
 
     // Adds a symbol into the table. It is not added if it already exists.
     // input: symbol - String
-    // output: -
-    public void add(String symbol){
-        ht.add(symbol);
+    // output: an int representing the position of the symbol in the hash table
+    public int add(String symbol){
+        return ht.add(symbol);
     }
 
     // Verifies if a given symbol exists in the table.
@@ -34,5 +37,17 @@ public class SymbolTable {
     // output: String
     public String getElemString(int pos){
         return "pos " + pos + ": " + ht.getFromPos(pos).toString();
+    }
+
+    public String toString(){
+        StringBuilder str = new StringBuilder("Symbol table entries:\n");
+        for(int i =0; i < ht.getSize(); i++){
+            SinglyLinkedList elems = ht.getFromPos(i);
+            if(elems == null || elems.getHead() == null){
+                continue;
+            }
+            str.append(getElemString(i)).append("\n");
+        }
+        return str.toString();
     }
 }

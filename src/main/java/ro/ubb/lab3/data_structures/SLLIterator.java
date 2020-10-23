@@ -1,4 +1,4 @@
-package ro.ubb.lab2;
+package ro.ubb.lab3.data_structures;
 
 public class SLLIterator {
     //The singly linked list over which the iteration is made.
