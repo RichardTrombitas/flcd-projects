@@ -48,7 +48,7 @@ public class TokenScanner {
     public void scan(PIF pif, SymbolTable st) throws LexicalErrorException {
         String token = detectNext();
         while (token != null) {
-            System.out.println(">" + token + "<");
+//            System.out.println(">" + token + "<");
             if (isReservedWord(token) || isOperator(token) || isSeparator(token)) {
                 pif.add(token, -1);
             } else if (isIdentifier(token) || isConstant(token)) {

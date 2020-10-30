@@ -13,21 +13,21 @@ public class SymbolTable {
     // Adds a symbol into the table. It is not added if it already exists.
     // input: symbol - String
     // output: an int representing the position of the symbol in the hash table
-    public int add(String symbol){
+    public int add(String symbol) {
         return ht.add(symbol);
     }
 
     // Verifies if a given symbol exists in the table.
     // input: symbol - String
     // output: true/false
-    public boolean exists(String symbol){
+    public boolean exists(String symbol) {
         return ht.exists(symbol);
     }
 
     // Removes a symbol from the table
     // input: symbol - String
     // output: -
-    public void remove(String symbol){
+    public void remove(String symbol) {
         ht.remove(symbol);
     }
 
@@ -35,15 +35,20 @@ public class SymbolTable {
     // in the symbol table.
     // input: pos - int
     // output: String
-    public String getElemString(int pos){
+    public String getElemString(int pos) {
         return "pos " + pos + ": " + ht.getFromPos(pos).toString();
     }
 
-    public String toString(){
-        StringBuilder str = new StringBuilder("Symbol table entries:\n");
-        for(int i =0; i < ht.getSize(); i++){
+    public String toString() {
+        StringBuilder str = new StringBuilder("""
+                The symbol table is implemented using a hash table. For conflict resolution, linked lists
+                are used. Each position of the hash table corresponds to a linked list.
+
+                Symbol table entries:
+                """);
+        for (int i = 0; i < ht.getSize(); i++) {
             SinglyLinkedList elems = ht.getFromPos(i);
-            if(elems == null || elems.getHead() == null){
+            if (elems == null || elems.getHead() == null) {
                 continue;
             }
             str.append(getElemString(i)).append("\n");
