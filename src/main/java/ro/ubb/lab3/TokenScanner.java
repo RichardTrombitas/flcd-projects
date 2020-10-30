@@ -78,8 +78,8 @@ public class TokenScanner {
     }
 
     public boolean isConstant(String token) {
-        return token.matches("\"[a-zA-Z 0-9]*\"") ||
-                token.matches("'[a-zA-Z 0-9]?'") ||
+        return token.matches("\"[a-zA-Z0-9]*\"") ||
+                token.matches("'[a-zA-Z0-9]?'") ||
                 token.matches("0") ||
                 token.matches("[+-]?[1-9]+[0-9]*");
     }
@@ -98,13 +98,21 @@ public class TokenScanner {
         }
         while (tokenizer.hasMoreTokens()) {
             StringBuilder token;
-            if(nextToken.matches("['\"]")){
+            if (nextToken.matches("['\"+-]")) {
                 token = new StringBuilder(nextToken);
                 nextToken = "";
             } else {
                 token = new StringBuilder(tokenizer.nextToken());
             }
             if (token.toString().equals(" ") || token.toString().equals("\n")) continue;
+            if (token.toString().matches("[+-]") && tokenizer.hasMoreTokens()) {
+                nextToken = tokenizer.nextToken();
+                if (nextToken.equals("0")) {
+                    token.append(nextToken);
+                    throw new LexicalErrorException("Invalid token on line " + lineNr + ": " + token.toString());
+                }
+                return token.toString();
+            }
             if (token.toString().matches("[=<>]") && tokenizer.hasMoreTokens()) {
                 nextToken = tokenizer.nextToken();
                 if (nextToken.matches("[=<>]")) {
