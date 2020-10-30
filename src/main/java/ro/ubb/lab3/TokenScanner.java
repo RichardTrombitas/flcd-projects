@@ -48,7 +48,7 @@ public class TokenScanner {
     public void scan(PIF pif, SymbolTable st) throws LexicalErrorException {
         String token = detectNext();
         while (token != null) {
-//            System.out.println(">" + token + "<");
+            System.out.println(">" + token + "<");
             if (isReservedWord(token) || isOperator(token) || isSeparator(token)) {
                 pif.add(token, -1);
             } else if (isIdentifier(token) || isConstant(token)) {
@@ -79,13 +79,14 @@ public class TokenScanner {
 
     public boolean isConstant(String token) {
         return token.matches("\"[a-zA-Z 0-9]*\"") ||
-                token.matches("\'[a-zA-Z 0-9]\'") ||
+                token.matches("'[a-zA-Z 0-9]?'") ||
                 token.matches("0") ||
                 token.matches("[+-]?[1-9]+[0-9]*");
     }
 
     public String detectNext() throws LexicalErrorException {
-        if (!nextToken.equals("") && !nextToken.equals(" ") && !nextToken.equals("\n")) {
+        if (!nextToken.matches("['\"]") && !nextToken.equals("") &&
+                !nextToken.equals(" ") && !nextToken.equals("\n")) {
             String ret = nextToken;
             nextToken = "";
             return ret;
@@ -96,7 +97,13 @@ public class TokenScanner {
             tokenizer = new StringTokenizer(line, delimiterList, true);
         }
         while (tokenizer.hasMoreTokens()) {
-            StringBuilder token = new StringBuilder(tokenizer.nextToken());
+            StringBuilder token;
+            if(nextToken.matches("['\"]")){
+                token = new StringBuilder(nextToken);
+                nextToken = "";
+            } else {
+                token = new StringBuilder(tokenizer.nextToken());
+            }
             if (token.toString().equals(" ") || token.toString().equals("\n")) continue;
             if (token.toString().matches("[=<>]") && tokenizer.hasMoreTokens()) {
                 nextToken = tokenizer.nextToken();
