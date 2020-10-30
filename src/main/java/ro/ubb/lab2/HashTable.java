@@ -27,14 +27,15 @@ public class HashTable {
 
     //Adds a given element to the hash table. It is not added if it already exists.
     //input: str - String
-    //output: -
-    public void add(String str) {
-        if(exists(str)) return;
+    //output: an int representing the position of the string in the hash table
+    public int add(String str) {
         int pos = hash(str);
+        if(exists(str)) return pos;
         if(table[pos] == null) {
             table[pos] = new SinglyLinkedList();
         }
         table[pos].addToHead(str);
+        return pos;
     }
 
     //Removes a given element from the hash table

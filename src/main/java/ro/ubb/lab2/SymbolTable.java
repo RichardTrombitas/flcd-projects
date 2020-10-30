@@ -9,9 +9,9 @@ public class SymbolTable {
 
     // Adds a symbol into the table. It is not added if it already exists.
     // input: symbol - String
-    // output: -
-    public void add(String symbol){
-        ht.add(symbol);
+    // output: an int representing the position of the symbol in the hash table
+    public int add(String symbol){
+        return ht.add(symbol);
     }
 
     // Verifies if a given symbol exists in the table.
