@@ -1,5 +1,6 @@
 package ro.ubb.flcd;
 
+import lombok.Getter;
 import ro.ubb.flcd.data_structure.Transition;
 
 import java.io.File;
@@ -9,14 +10,17 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-public class FA {
+@Getter
+public class FiniteAutomaton {
+    String path;
     private final List<String> alphabet = new ArrayList<>();
     private final List<String> states = new ArrayList<>();
     private final List<Transition> transitions = new ArrayList<>();
     private String initialState;
     private final List<String> finalStates = new ArrayList<>();
 
-    public FA(String path) throws FileNotFoundException {
+    public FiniteAutomaton(String path) throws FileNotFoundException {
+        this.path = path;
         File faFile = new File(path);
         Scanner scanner = new Scanner(faFile);
         StringTokenizer tokenizer;
@@ -59,6 +63,21 @@ public class FA {
                 i++;
             }
         }
+    }
+
+    public boolean isAccepted(String sequence) {
+        String state = initialState;
+        char[] charSequence = sequence.toCharArray();
+        for (int i = 0; i < charSequence.length; i++) {
+            for (Transition t : transitions) {
+                if (t.getState().equals(state) && t.getSymbol().equals(String.valueOf(charSequence[i]))) {
+                    state = t.getResultState();
+                    if (finalStates.contains(state) && i == charSequence.length - 1) return true;
+                    break;
+                }
+            }
+        }
+        return false;
     }
 
     @Override
