@@ -8,11 +8,11 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
-        File tokensFile = new File("input/token.in");
-        File p1 = new File("input/p1.txt");
-        File p2 = new File("input/p2.txt");
-        File p3 = new File("input/p3.txt");
-        File p1err = new File("input/p1err.txt");
+        File tokensFile = new File("input/programs/token.in");
+        File p1 = new File("input/programs/p1.txt");
+        File p2 = new File("input/programs/p2.txt");
+        File p3 = new File("input/programs/p3.txt");
+        File p1err = new File("input/programs/p1err.txt");
 
         SymbolTable st = new SymbolTable();
         PIF pif = new PIF();
@@ -20,8 +20,8 @@ public class Main {
         try {
             TokenScanner scanner = new TokenScanner(p1, tokensFile);
             scanner.scan(pif, st);
-            FileWriter pifWriter = new FileWriter("output/PIF.out");
-            FileWriter stWriter = new FileWriter("output/ST.out");
+            FileWriter pifWriter = new FileWriter("output/programs/PIF.out");
+            FileWriter stWriter = new FileWriter("output/programs/ST.out");
             pifWriter.write(pif.toString());
             stWriter.write(st.toString());
             pifWriter.close();

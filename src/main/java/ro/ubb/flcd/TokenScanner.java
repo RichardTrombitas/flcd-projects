@@ -1,5 +1,7 @@
 package ro.ubb.flcd;
 
+import ro.ubb.flcd.PIF;
+import ro.ubb.flcd.SymbolTable;
 import ro.ubb.flcd.exception.LexicalErrorException;
 
 import java.io.File;
