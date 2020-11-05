@@ -1,7 +1,7 @@
-package ro.ubb.lab3;
+package ro.ubb.flcd;
 
-import ro.ubb.lab3.data_structures.HashTable;
-import ro.ubb.lab3.data_structures.SinglyLinkedList;
+import ro.ubb.flcd.data_structure.HashTable;
+import ro.ubb.flcd.data_structure.SinglyLinkedList;
 
 public class SymbolTable {
     //The hash table in which the symbols are stored.

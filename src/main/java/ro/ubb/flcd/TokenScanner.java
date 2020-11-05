@@ -1,4 +1,6 @@
-package ro.ubb.lab3;
+package ro.ubb.flcd;
+
+import ro.ubb.flcd.exception.LexicalErrorException;
 
 import java.io.File;
 import java.io.FileNotFoundException;

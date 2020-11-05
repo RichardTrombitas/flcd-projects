@@ -1,7 +1,7 @@
-package ro.ubb.lab3;
+package ro.ubb.flcd.exception;
 
 public class LexicalErrorException extends Exception{
-    LexicalErrorException(String msg){
+    public LexicalErrorException(String msg){
         super(msg);
     }
 }

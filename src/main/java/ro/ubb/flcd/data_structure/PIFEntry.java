@@ -1,4 +1,4 @@
-package ro.ubb.lab3;
+package ro.ubb.flcd.data_structure;
 
 public class PIFEntry {
     private final String token;

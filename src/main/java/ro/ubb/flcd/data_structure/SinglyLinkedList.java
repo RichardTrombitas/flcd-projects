@@ -1,4 +1,4 @@
-package ro.ubb.lab3.data_structures;
+package ro.ubb.flcd.data_structure;
 
 public class SinglyLinkedList {
     //The first node of the linked list, denoted as the head.

@@ -1,4 +1,4 @@
-package ro.ubb.lab3.data_structures;
+package ro.ubb.flcd.data_structure;
 
 public class HashTable {
     //Array of singly linked lists, in which the elements are going to be stored.
