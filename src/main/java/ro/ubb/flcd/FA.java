@@ -32,12 +32,16 @@ public class FA {
             tokenizer = new StringTokenizer(scanner.nextLine(), " ");
             if (!tokenizer.hasMoreTokens()) continue;
             String state = tokenizer.nextToken();
-            if (state.equals("*") && tokenizer.hasMoreTokens()) {
+            if (state.equals("->") && tokenizer.hasMoreTokens()) {
+                state = tokenizer.nextToken();
+                if (state.equals("*") && tokenizer.hasMoreTokens()) {
+                    state = tokenizer.nextToken();
+                    finalStates.add(state);
+                }
+                initialState = state;
+            } else if (state.equals("*") && tokenizer.hasMoreTokens()) {
                 state = tokenizer.nextToken();
                 finalStates.add(state);
-            } else if (state.equals("->") && tokenizer.hasMoreTokens()) {
-                state = tokenizer.nextToken();
-                initialState = state;
             }
             states.add(state);
             int i = 0;
@@ -63,9 +67,9 @@ public class FA {
                 "alphabet=" + alphabet +
                 ", states=" + states +
                 ", initialState='" + initialState + '\'' +
-                ", finalStates=" + finalStates + ",\n\tTransitions=\n\t\t[");
+                ", finalStates=" + finalStates + ",\n\ttransitions=\n\t\t[");
         res.append(transitions.get(0).toString()).append(",\n");
-        for(int i = 1; i < transitions.size(); i++){
+        for (int i = 1; i < transitions.size(); i++) {
             res.append("\t\t ").append(transitions.get(i).toString()).append(",\n");
         }
         res.replace(res.length() - 2, res.length() - 1, "]\n}");
