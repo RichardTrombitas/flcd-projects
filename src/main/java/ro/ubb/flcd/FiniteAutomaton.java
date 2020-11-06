@@ -13,6 +13,7 @@ import java.util.StringTokenizer;
 @Getter
 public class FiniteAutomaton {
     private final String path;
+    private boolean isDeterministic = true;
     private final List<String> alphabet = new ArrayList<>();
     private final List<String> states = new ArrayList<>();
     private final List<Transition> transitions = new ArrayList<>();
@@ -57,15 +58,19 @@ public class FiniteAutomaton {
                     continue;
                 }
                 StringTokenizer resultStateTokenizer = new StringTokenizer(token, "{},");
+                int elemCount = 0;
                 while (resultStateTokenizer.hasMoreTokens()) {
                     transitions.add(new Transition(state, alphabet.get(i), resultStateTokenizer.nextToken()));
+                    elemCount++;
                 }
+                    if(elemCount > 1) isDeterministic = false;
                 i++;
             }
         }
     }
 
     public boolean isAccepted(String sequence) {
+        if(!isDeterministic) throw new RuntimeException("Can't verify sequences if the FA is not deterministic!");
         String state = initialState;
         char[] charSequence = sequence.toCharArray();
         for (int i = 0; i < charSequence.length; i++) {
