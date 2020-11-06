@@ -12,7 +12,7 @@ import java.util.StringTokenizer;
 
 @Getter
 public class FiniteAutomaton {
-    String path;
+    private final String path;
     private final List<String> alphabet = new ArrayList<>();
     private final List<String> states = new ArrayList<>();
     private final List<Transition> transitions = new ArrayList<>();
