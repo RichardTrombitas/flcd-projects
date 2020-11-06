@@ -69,6 +69,7 @@ public class FiniteAutomaton {
         String state = initialState;
         char[] charSequence = sequence.toCharArray();
         for (int i = 0; i < charSequence.length; i++) {
+            if(!alphabet.contains(String.valueOf(charSequence[i]))) return false;
             for (Transition t : transitions) {
                 if (t.getState().equals(state) && t.getSymbol().equals(String.valueOf(charSequence[i]))) {
                     state = t.getResultState();

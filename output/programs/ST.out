@@ -1,0 +1,9 @@
+The symbol table is implemented using a hash table. For conflict resolution, linked lists
+are used. Each position of the hash table corresponds to a linked list.
+
+Symbol table entries:
+pos 37: c 2 
+pos 38: 1 
+pos 40: 3 a 
+pos 87: b 
+pos 97: max 

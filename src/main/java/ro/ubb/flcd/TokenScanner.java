@@ -1,7 +1,5 @@
 package ro.ubb.flcd;
 
-import ro.ubb.flcd.PIF;
-import ro.ubb.flcd.SymbolTable;
 import ro.ubb.flcd.exception.LexicalErrorException;
 
 import java.io.File;
@@ -49,7 +47,7 @@ public class TokenScanner {
         }
     }
 
-    public void scan(PIF pif, SymbolTable st) throws LexicalErrorException {
+    public void scan(PIF pif, SymbolTable st) throws LexicalErrorException, FileNotFoundException {
         String token = detectNext();
         while (token != null) {
 //            System.out.println(">" + token + "<");
@@ -81,11 +79,14 @@ public class TokenScanner {
         return token.matches("[a-zA-Z][0-9_a-zA-Z]*");
     }
 
-    public boolean isConstant(String token) {
+    public boolean isConstant(String token) throws FileNotFoundException {
+        FiniteAutomaton integerFA = new FiniteAutomaton("input/fa/fa-integer.in");
+
         return token.matches("\"[a-zA-Z0-9]*\"") ||
                 token.matches("'[a-zA-Z0-9]?'") ||
-                token.matches("0") ||
-                token.matches("[+-]?[1-9]+[0-9]*");
+                integerFA.isAccepted(token);
+//                token.matches("0") ||
+//                token.matches("[+-]?[1-9]+[0-9]*");
     }
 
     public String detectNext() throws LexicalErrorException {

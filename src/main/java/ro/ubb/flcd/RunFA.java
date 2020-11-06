@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 
 public class RunFA {
     public static void main(String[] args) throws FileNotFoundException {
-        FiniteAutomaton fa = new FiniteAutomaton("input/fa/fa.in");
+        FiniteAutomaton fa = new FiniteAutomaton("input/fa/fa-integer.in");
         FiniteAutomatonUI ui = new FiniteAutomatonUI(fa);
         ui.start();
     }
