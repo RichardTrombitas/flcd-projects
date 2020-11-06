@@ -10,6 +10,8 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class TokenScanner {
+    private final FiniteAutomaton identifierFA;
+    private final FiniteAutomaton integerFA;
     private final List<String> reservedWords = new ArrayList<>();
     private final List<String> operators = new ArrayList<>();
     private final List<String> separators = new ArrayList<>();
@@ -20,7 +22,9 @@ public class TokenScanner {
     private String nextToken = "";
     private final Scanner scanner;
 
-    public TokenScanner(File sourceCode, File tokensFile) throws FileNotFoundException {
+    public TokenScanner(File sourceCode, File tokensFile, String identifierFAPath, String integerFAPath) throws FileNotFoundException {
+        identifierFA = new FiniteAutomaton(identifierFAPath);
+        integerFA = new FiniteAutomaton(integerFAPath);
         updateTokenLists(tokensFile);
         delimiterList = operators.stream().reduce("", (String a, String b) -> a + b) +
                 separators.stream().reduce("", (String a, String b) -> a + b) + " \n'\"";
@@ -76,12 +80,11 @@ public class TokenScanner {
     }
 
     public boolean isIdentifier(String token) {
-        return token.matches("[a-zA-Z][0-9_a-zA-Z]*");
+//        return token.matches("[a-zA-Z][0-9_a-zA-Z]*");
+        return identifierFA.isAccepted(token);
     }
 
     public boolean isConstant(String token) throws FileNotFoundException {
-        FiniteAutomaton integerFA = new FiniteAutomaton("input/fa/fa-integer.in");
-
         return token.matches("\"[a-zA-Z0-9]*\"") ||
                 token.matches("'[a-zA-Z0-9]?'") ||
                 integerFA.isAccepted(token);

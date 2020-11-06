@@ -18,7 +18,7 @@ public class Main {
         PIF pif = new PIF();
 
         try {
-            TokenScanner scanner = new TokenScanner(p1, tokensFile);
+            TokenScanner scanner = new TokenScanner(p1, tokensFile, "input/fa/fa-identifier.in", "input/fa/fa-integer.in");
             scanner.scan(pif, st);
             FileWriter pifWriter = new FileWriter("output/programs/PIF.out");
             FileWriter stWriter = new FileWriter("output/programs/ST.out");
@@ -29,7 +29,7 @@ public class Main {
             System.out.println("The source code is lexically correct.");
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (LexicalErrorException e){
+        } catch (LexicalErrorException e) {
             System.out.println("Lexical error! " + e.getMessage());
         }
     }
